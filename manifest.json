@@ -134,7 +134,7 @@
         "npm": {
           "status": "planned",
           "name": "temper-color",
-          "note": "Consumed as CSS and tokens today (no package.json); temper-color is the planned npm name."
+          "note": "Consumed as CSS and tokens today (no package.json). The planned npm name is temper-color, not temper, because temper is already taken on npm (a template compiler)."
         },
         "jsr": {
           "status": "planned",
