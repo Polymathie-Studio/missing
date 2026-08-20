@@ -1,5 +1,5 @@
 {
-  "$comment": "Polymathie family manifest. The canonical machine-readable descriptor of the family, from which per-surface packaging (npm, JSR, CDN, Claude marketplace, MCP, design tokens) is generated or validated. Slots marked status 'published' are live; 'planned' slots carry proposed names for confirmation and are not yet real. Companion schema lives alongside as manifest.schema.json (to write).",
+  "$comment": "Polymathie family manifest. The canonical machine-readable descriptor of the family, from which per-surface packaging (npm, JSR, CDN, Claude marketplace, MCP, design tokens) is generated or validated. Slots marked status 'published' are live; 'planned' slots carry proposed names for confirmation and are not yet real. Companion schema is manifest.schema.json; validate with validate.ts (deno run --allow-read validate.ts).",
   "name": "Polymathie",
   "version": "0.1.0",
   "description": "A family of small, dependency-free primitives for building websites, dashboards, and tools, each closing one invisible-correctness gap that fast, AI-assisted building drops. Native-first, accessible by default, no tracking.",
@@ -112,7 +112,16 @@
       "themedByTemper": null,
       "api": [
         "contrast",
-        "derive (CONFIG)"
+        "derive",
+        "deriveByKey",
+        "hexToOklch",
+        "deltaEOk",
+        "simulatedContrast",
+        "simulatedLuminance",
+        "brandToFamily",
+        "brandFidelity",
+        "resolveSystem",
+        "CONFIG"
       ],
       "audit": "contrast() (partial: contrast checking only)",
       "conformance": {
