@@ -16,6 +16,12 @@ flowchart TB
   M --> F["Fast and stable · FLEET"]
 ```
 
+## Why MISSING
+
+The name is literal. MISSING is about what is missing from a shipped web surface: the correctness that is present when the work is done right and conspicuously absent when it is not. Accessible controls, honest states, findable metadata, stable delivery, readable color, keys kept private, none of these are exotic, and they have been missing from a great deal of the web for a long time, well before AI wrote a line of it.
+
+AI-assisted building and rendering make them missing more often, for the same reason at greater scale: a model optimizes for what the demo shows, and these are exactly the parts a demo does not show. So the name points in both directions, what the web has long left out and what an AI build leaves out faster, and MISSING answers it with a standard, a manifest, and an auditor, so a surface can be checked for what it is missing before it ships.
+
 ## The axes and their instruments
 
 | Axis (kind of invisibility) | Posture | Instrument |
