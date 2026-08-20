@@ -39,8 +39,8 @@ MISSING names these as real gaps and routes them to "yours to handle" rather tha
 
 ## Status
 
-The machine-readable core (manifest, schema, validator, conformance auditor) is here. The published standard document and the cross-tool agent-instruction file are forthcoming. A cumulative MCP server for the whole suite is a later step, once every primitive is complete.
+The machine-readable core (manifest, schema, validator, conformance auditor), the standard document (`MISSING - the standard.md`, dual-licensed CC-BY-4.0), and the cross-tool agent-instruction file (`AGENTS.md`) are all here. A cumulative MCP server for the whole suite is a later step, once every primitive is complete.
 
 ## License
 
-Apache-2.0. Copyright 2026 Regis Lloyd Chapman. See `LICENSE` and `NOTICE`. The standard document, when it ships, will be dual-licensed CC-BY-4.0.
+Apache-2.0. Copyright 2026 Regis Lloyd Chapman. See `LICENSE` and `NOTICE`. The standard document (`MISSING - the standard.md`) is dual-licensed CC-BY-4.0; see `LICENSE-SPEC`.
