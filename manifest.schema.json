@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polymathie.xyz/manifest.schema.json",
+  "title": "Polymathie family manifest",
+  "description": "The canonical machine-readable descriptor of the Polymathie family: its axes, its primitives and their APIs, the conformance baseline, and the packaging that lets each primitive land on common distribution surfaces. A manifest validates against this schema.",
+  "type": "object",
+  "required": ["name", "version", "license", "axes", "primitives"],
+  "additionalProperties": true,
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "homepage": { "type": "string", "format": "uri" },
+    "site": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "author": { "type": "string" },
+    "surfaces": {
+      "type": "object",
+      "description": "The distribution surfaces the family anticipates, each with a status and notes.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["published", "planned", "partial", "auto", "review", "future", "none", "n/a-until-packaged"] },
+          "note": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "axes": {
+      "type": "array",
+      "description": "The invisible-correctness axes and the instrument that closes each.",
+      "items": {
+        "type": "object",
+        "required": ["axis", "posture", "instrument"],
+        "properties": {
+          "axis": { "type": "string" },
+          "posture": { "type": "string" },
+          "instrument": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "primitives": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/primitive" }
+    },
+    "notClosedByPrimitive": { "type": "array", "items": { "type": "string" } },
+    "conformanceBaseline": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "primitive": {
+      "type": "object",
+      "required": ["id", "axis", "status", "packaging"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "description": "The primitive's short name (backronym), e.g. BEACON." },
+        "axis": { "type": "string" },
+        "posture": { "type": "string" },
+        "shape": { "type": "string", "description": "The primitive's kind, e.g. tokens+css, core+react, generator+audit." },
+        "status": { "type": "string", "enum": ["published", "in-progress", "planned"] },
+        "coverage": { "type": "string", "description": "Scope covered, e.g. Tiers 1 to 3." },
+        "repo": { "type": "string", "format": "uri" },
+        "themedByTemper": { "type": ["boolean", "null"] },
+        "api": { "type": "array", "items": { "type": "string" }, "description": "The exported symbols." },
+        "audit": { "type": ["string", "null"], "description": "The runnable conformance entry point, or null if conformance is checklist-only." },
+        "conformance": {
+          "type": "object",
+          "properties": {
+            "runnable": { "type": ["string", "null"] },
+            "checklist": { "type": "string" },
+            "frame": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "packaging": {
+          "type": "object",
+          "description": "One slot per distribution surface. Slots are extensible and heterogeneous (most are objects, some, like frameworkBindings, are arrays), so slot shape is not constrained.",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}
