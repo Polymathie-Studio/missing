@@ -39,16 +39,16 @@
       "note": "TEMPER tokens; W3C DTCG alignment to be decided so they can travel to Figma, Style Dictionary, and Tokens Studio."
     },
     "agentConfig": {
-      "status": "planned",
+      "status": "partial",
       "shipped": [
-        "AGENTS.md (drafted)"
+        "AGENTS.md (in Polymathie-Studio/missing)"
       ],
       "variants": [
         "CLAUDE.md",
         "cursor rules",
         "windsurf rules"
       ],
-      "note": "The agent-instruction file, to land in each agent's config format."
+      "note": "AGENTS.md ships in the MISSING repo and doubles as the other agent configs; distinct variant files are a later packaging step."
     },
     "frameworkBindings": {
       "status": "partial",
