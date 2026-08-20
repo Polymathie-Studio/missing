@@ -1,8 +1,20 @@
 # MISSING
 
-MISSING is the umbrella for the invisible-correctness layer of a shipped web surface: what a page must carry that a look-at-it review cannot see. AI-assisted builds optimize for "does it render, does the demo work," and skip everything not visible in the artifact under review. Every gap is an instance of that one thing. MISSING names the axes of that invisibility, routes each to the [Polymathie](https://github.com/Polymathie-Studio) primitive that closes it, and ships the machine-readable pieces that let an agent or a build pipeline compose the family and check a surface against it.
+MISSING is the standard at the center of **DS4AI, the Design Suite for AI, from [Polymathie-Studio](https://github.com/Polymathie-Studio)**: the umbrella for the invisible-correctness layer of a shipped web surface, what a page must carry that a look-at-it review cannot see. AI-assisted builds optimize for "does it render, does the demo work," and skip everything not visible in the artifact under review. Every gap is an instance of that one thing. MISSING names the axes of that invisibility, routes each to the instrument that closes it, and ships the machine-readable pieces that let an agent or a build pipeline compose the suite and check a surface against it.
 
 MISSING itself provides no UI component. It is the map, the family manifest, and the conformance auditor.
+
+```mermaid
+flowchart TB
+  DS["DS4AI, the Design Suite for AI"]
+  DS --> M["MISSING, the standard and conformance auditor"]
+  M --> T["Perceivable · TEMPER"]
+  M --> G["Operable · GRASP"]
+  M --> LG["Off the happy path · LUCID + GRACE"]
+  M --> H["Key-private · HASP"]
+  M --> B["Findable · BEACON"]
+  M --> F["Fast and stable · FLEET"]
+```
 
 ## The axes and their instruments
 

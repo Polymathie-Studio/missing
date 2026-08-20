@@ -1,8 +1,10 @@
 {
   "$comment": "Polymathie family manifest. The canonical machine-readable descriptor of the family, from which per-surface packaging (npm, JSR, CDN, Claude marketplace, MCP, design tokens) is generated or validated. Slots marked status 'published' are live; 'planned' slots carry proposed names for confirmation and are not yet real. Companion schema is manifest.schema.json; validate with validate.ts (deno run --allow-read validate.ts).",
   "name": "Polymathie",
+  "suite": "DS4AI, the Design Suite for AI",
+  "studio": "Polymathie-Studio",
   "version": "0.1.0",
-  "description": "A family of small, dependency-free primitives for building websites, dashboards, and tools, each closing one invisible-correctness gap that fast, AI-assisted building drops. Native-first, accessible by default, no tracking.",
+  "description": "DS4AI, the Design Suite for AI, from Polymathie-Studio: a family of small, dependency-free primitives for building websites, dashboards, and tools, each closing one invisible-correctness gap that fast, AI-assisted building drops. Native-first, accessible by default, no tracking.",
   "homepage": "https://github.com/Polymathie-Studio",
   "site": "https://polymathie.xyz",
   "license": "Apache-2.0",
@@ -130,8 +132,9 @@
       },
       "packaging": {
         "npm": {
-          "status": "none",
-          "note": "No package.json; consumed as CSS and tokens, not npm. A package name is undecided."
+          "status": "planned",
+          "name": "temper-color",
+          "note": "Consumed as CSS and tokens today (no package.json); temper-color is the planned npm name."
         },
         "jsr": {
           "status": "planned",
