@@ -87,8 +87,8 @@
       "instrument": "LUCID (principle) + GRACE (components)"
     },
     {
-      "axis": "key-privacy",
-      "posture": "The user's key stays in the user's browser, never on a server",
+      "axis": "hardened",
+      "posture": "The client-surface security posture the browser can enforce: security headers, subresource integrity and safe references, and no secrets reaching the client",
       "instrument": "HASP"
     },
     {
@@ -202,8 +202,8 @@
     {
       "id": "HASP",
       "backronym": "Hold Any-provider Secrets Privately",
-      "axis": "key-privacy",
-      "posture": "The user's key stays in the user's browser, never on a server",
+      "axis": "hardened",
+      "posture": "The client-surface security posture the browser can enforce, with the user's key held in the browser (hasp-key) as one instantiation",
       "shape": "core+react (TypeScript)",
       "status": "published",
       "repo": "https://github.com/Polymathie-Studio/hasp",

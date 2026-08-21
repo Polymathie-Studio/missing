@@ -11,7 +11,7 @@ flowchart TB
   M --> T["Perceivable · TEMPER"]
   M --> G["Operable · GRASP"]
   M --> LG["Off the happy path · LUCID + GRACE"]
-  M --> H["Key-private · HASP"]
+  M --> H["Hardened · HASP"]
   M --> B["Findable · BEACON"]
   M --> F["Fast and stable · FLEET"]
 ```

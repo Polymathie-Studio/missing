@@ -27,7 +27,7 @@ A conforming surface holds all six postures. Each is stated normatively; each is
 1. **Perceivable.** Every reader can perceive the content. Color contrast meets the WCAG floor, and no meaning is carried by color alone. Text remains legible and resizable.
 2. **Operable.** Every control is operable by any input and any assistive technology. Controls are semantic elements or carry the correct role; each is keyboard-operable with a visible focus indicator and an accessible name; focus is managed across overlays and returned on close; every input is labeled.
 3. **Honest off the happy path.** The surface discloses its condition rather than failing silently. Loading, empty, error, offline, and not-found states each exist and read in plain language, with a way forward. A submission reports success or failure.
-4. **Key-private.** Where the surface calls a model or service on the user's behalf, the user's key stays in the user's browser and never reaches a server the operator controls.
+4. **Hardened.** The surface declares the client-surface security posture the browser can enforce: the security response headers, subresource integrity and safe references, and no secrets reaching the client. This includes a user's key, when the surface calls a model or service on the user's behalf, held in the browser and never reaching a server the operator controls.
 5. **Findable.** The surface represents itself correctly to search engines, social platforms, and machine agents. The identifying metadata, canonical URL, social cards, structured data, and the site-level files are present in the server-returned HTML, where consumers that do not run JavaScript can read them.
 6. **Fast and stable.** The surface loads quickly and does not shift under the reader. Images reserve their space and are scheduled correctly, the critical path is clear, and repeat visits are cached.
 
@@ -40,7 +40,7 @@ The standard is accompanied by a reference family, [Polymathie](https://github.c
 | Perceivable | Perceivable by any reader | TEMPER (color and design tokens) |
 | Operable | Operable by any input or assistive technology | GRASP (interaction components) |
 | Honest off the happy path | Discloses its condition | LUCID (the disclosure principle) and GRACE (the state components) |
-| Key-private | The key stays in the browser | HASP |
+| Hardened | The client-surface security posture the browser enforces | HASP |
 | Findable | Represents itself to machines and shares | BEACON |
 | Fast and stable | Loads fast and stable | FLEET (the primitizable slice) |
 
@@ -52,7 +52,7 @@ Conformance is a property of the surface: it is conformant when it holds all six
 
 The postures divide by what a static check can reach:
 
-- **Fully checkable from served HTML**: findability and delivery (the auditor composes BEACON's and FLEET's own auditors for depth), and the operable and key-private axes at the level of semantic controls, labeled inputs, and exposed secrets.
+- **Fully checkable from served HTML**: findability and delivery (the auditor composes BEACON's and FLEET's own auditors for depth), and the operable and hardened axes at the level of semantic controls, labeled inputs, exposed secrets, and markup integrity. The hardened axis's header altitude, the security response headers, needs the response itself, not only the HTML, and is declared not-checked when the headers are absent.
 - **Partially checkable**: the perceivable axis. Contrast needs resolved colors, so it is verified against the palette with TEMPER's `contrast`, not from a snapshot.
 - **Not statically checkable**: the honest-off-the-happy-path axis. The loading, empty, error, and not-found states are not visible in a single happy-path render; they are verified by driving the surface into each state.
 
