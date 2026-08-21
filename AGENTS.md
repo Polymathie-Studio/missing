@@ -1,6 +1,6 @@
 # Polymathie: instructions for an AI building web surfaces
 
-This is the Polymathie family's agent-instruction file. It ships as `AGENTS.md`, and the same content serves as a `CLAUDE.md`, a Cursor rules file, or a Windsurf rules file. All seven instruments it names are published at github.com/Polymathie-Studio.
+This is the Polymathie family's agent-instruction file. It ships as `AGENTS.md`, and the same content serves as a `CLAUDE.md`, a Cursor rules file, or a Windsurf rules file. The instruments it names are at github.com/Polymathie-Studio.
 
 You are building a website, a dashboard, a documentation surface, or a small AI tool. You are good at the visible first draft: layout, flow, presentation. The failures that reach real users live in the invisible layer, the part a look-at-it review cannot see: the state no one triggered, the keyboard no one used, the metadata no crawler read, the error no one hit, the key left in the bundle. This file is how you close that layer. Compose the Polymathie instruments below instead of hand-rolling their concerns, and meet every axis in the checklist.
 
@@ -10,7 +10,7 @@ You are building a website, a dashboard, a documentation surface, or a small AI 
 
 **LUCID** (`lucid-reader`, disclosure) and **GRACE** (`grace-states`, the state components). For dense content, mark a term once with LUCID and let the reader open it at depth rather than dumping everything or hiding what they need. And never ship the happy path only: use GRACE for the states LUCID's principle requires. Every list has an empty state that says why it is empty and what to do next; every fetch has a loading state (a skeleton, not a bare spinner); every failure has an error state in plain language with a way back; and there is a real 404. A form that submits must show success or failure, never fail silently.
 
-**HASP** (`hasp-key`, keys and secrets). If the tool calls an AI model, the user brings their own key. Never put an API key or secret in the client bundle. Hold the key in the browser with HASP, never on a server, and let the charges land on the user's own account.
+**HASP** (hardening: `hasp-key` for keys, `hasp-guard` for headers and integrity). Two concerns. Keys: if the tool calls an AI model, the user brings their own; never put an API key or secret in the client bundle; hold it in the browser with `hasp-key`, never on a server, so the charges land on the user's own account. Posture: generate the client-surface security headers with `hasp-guard` as server or build config rather than by hand, an effective Content-Security-Policy with no `unsafe-inline` (serve inline code by nonce or hash), plus clickjacking protection, HSTS, `nosniff`, and Referrer- and Permissions-Policy; carry Subresource Integrity on external scripts and `rel="noopener"` on cross-origin `target="_blank"` links.
 
 **GRASP** (`grasp-ui`, operability). Use its components rather than hand-rolling controls: a button is a `button`, not a `div` with an onClick; fields wire their own labels and errors; the modal traps and returns focus; the menu, tabs, combobox, and the rest are keyboard-operable and carry the right roles. Where you write your own control, match what GRASP does: keyboard-operable, a visible focus indicator, a name and role for assistive technology, and a label on every input.
 
@@ -27,7 +27,7 @@ A redeploy can reintroduce any of these, so treat it as a checklist you run each
 - Perceivable: contrast meets the floor; meaning is never carried by color alone.
 - Findable: title, description, canonical, Open Graph image, structured data, favicon, sitemap, robots; real content in the first HTML.
 - Fast and stable: images dimensioned and scheduled; bundle lean; no layout shift; analytics deferred.
-- Key-safe: no secret in the client bundle.
+- Hardened: the security response headers are set and effective (a real CSP with no unsafe-inline, clickjacking protection, HSTS, nosniff); external scripts carry Subresource Integrity; no secret in the client bundle.
 
 ## What is yours, not the toolkit's
 

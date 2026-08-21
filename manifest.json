@@ -256,7 +256,8 @@
       "posture": "The headers, policy, and integrity instrument of HASP: the security response headers and safe-markup helpers a surface declares, generated as server and build configuration and audited by hardened.js",
       "shape": "core (zero-dependency JS)",
       "status": "in-progress",
-      "note": "The generator lives in the missing repo (hasp-guard.js) alongside its auditor hardened.js; a run of hardened.js over its output clears Tiers 1 and 2. Final packaging (own repo, or published from missing) is undecided and Durgadas's call.",
+      "repo": "https://github.com/Polymathie-Studio/hasp",
+      "note": "Lives in the hasp repo (hasp-guard.js) alongside its auditor hardened.js and the hasp-key instrument; the HASP repo is the home of all HASP code. A run of hardened.js over its output clears Tiers 1 and 2.",
       "themedByTemper": false,
       "api": [
         "csp",
