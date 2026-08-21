@@ -45,6 +45,67 @@
       "items": { "$ref": "#/$defs/primitive" }
     },
     "notClosedByPrimitive": { "type": "array", "items": { "type": "string" } },
+    "conformanceModel": {
+      "type": "object",
+      "description": "How a surface conforms and how well the claim is backed. Breadth (all six axes closed) is held apart from evidence (how the claim was checked).",
+      "additionalProperties": true,
+      "properties": {
+        "breadthDesignation": {
+          "type": "object",
+          "required": ["name", "earnedWhen"],
+          "additionalProperties": true,
+          "properties": {
+            "name": { "type": "string" },
+            "earnedWhen": { "type": "string" },
+            "note": { "type": "string" }
+          }
+        },
+        "reach": { "type": "object", "additionalProperties": true },
+        "internalEvidenceLadder": {
+          "type": "object",
+          "required": ["rungs"],
+          "additionalProperties": true,
+          "properties": {
+            "status": { "type": "string" },
+            "rungs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id"],
+                "additionalProperties": true,
+                "properties": {
+                  "id": { "type": "string", "enum": ["self-reported", "re-provable", "audited"] },
+                  "meaning": { "type": "string" }
+                }
+              }
+            },
+            "nestingForced": { "type": "boolean" },
+            "ciNote": { "type": "string" }
+          }
+        },
+        "reservedExternalLadder": {
+          "type": "object",
+          "required": ["status", "rungs"],
+          "additionalProperties": true,
+          "properties": {
+            "status": { "type": "string", "enum": ["reserved"] },
+            "rungs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "name"],
+                "additionalProperties": true,
+                "properties": {
+                  "id": { "type": "string", "enum": ["SRA", "DRA", "IAR"] },
+                  "name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "rules": { "type": "array", "items": { "type": "string" } }
+      }
+    },
     "conformanceBaseline": { "type": "array", "items": { "type": "string" } }
   },
   "$defs": {

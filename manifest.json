@@ -478,6 +478,54 @@
     "Legal content (privacy policy, cookie consent): jurisdiction-specific; tracking is ruled out family-wide.",
     "Delivery transforms and enforcement (image compression, JavaScript bundling, setting cache headers or CDN behavior): build-tool and server work; FLEET emits the markup and config that point at the built assets and audits the result, but cannot encode a pixel, bundle a module, or set a header."
   ],
+  "conformanceModel": {
+    "$comment": "How a surface conforms and how well the claim is backed. Two questions held apart: breadth (are all six axes closed) and evidence (how the claim was checked). Prose in section 4 of 'MISSING - the standard.md'.",
+    "breadthDesignation": {
+      "name": "MISSING Conformant",
+      "earnedWhen": "The surface discharges all six axes.",
+      "note": "A property of the surface, not of any one tool. Carried at whatever evidence level below."
+    },
+    "reach": {
+      "$comment": "Reach sets the embodiment of each axis's check, not a separate grade: machine where a check runs against the served HTML, a defined human procedure where it cannot. Both report onto the internal evidence ladder.",
+      "reachableFromServedHtml": [
+        "findable",
+        "fast-and-stable",
+        "operable (semantic controls, labeled inputs)",
+        "hardened (markup-integrity and secrets altitude; the header altitude needs the response, declared not-checked when headers are absent)"
+      ],
+      "needsResolvedColors": [
+        "perceivable (contrast verified against the palette with TEMPER contrast(), not from a snapshot)"
+      ],
+      "needsSurfaceDriven": [
+        "off-the-happy-path (loading, empty, error, not-found confirmed by driving the surface into each state)"
+      ]
+    },
+    "internalEvidenceLadder": {
+      "status": "live",
+      "$comment": "Grades how a conformance claim is backed. Cumulative and nested; describes how the owner checked, never whether the result is good or safe. Ceiling is internal (self-audited, never independent). Words are bare when general to any axis, HASP-prefixed when scoped to the hardening claim (e.g. HASP-audited).",
+      "rungs": [
+        { "id": "self-reported", "meaning": "A bare claim; the owner says the surface closes the axis." },
+        { "id": "re-provable", "meaning": "The claim exposed to a defined, repeatable check anyone could re-apply: the runnable auditor for a machine-reachable axis, the stated procedure for one that is not." },
+        { "id": "audited", "meaning": "That check actually applied to the surface, and passed. Run-and-re-runnable where the check is a tool, not a snapshot that goes stale." }
+      ],
+      "nestingForced": true,
+      "ciNote": "A conformance.js run in CI earns audited on the machine-reachable axes and leaves the rest at self-reported until their procedures are applied. MISSING Conformant at the audited level is reached when every axis's defined check has been applied and passed, machine and human procedure together."
+    },
+    "reservedExternalLadder": {
+      "status": "reserved",
+      "$comment": "Held until an independent assessment ecosystem exists; shipping it now would name reviewers who are not in the room. Grades the independence of an assessment, not whether the thing is safe. HASP-prefixed when scoped to the hardening claim.",
+      "rungs": [
+        { "id": "SRA", "name": "Self-Reported Assessment" },
+        { "id": "DRA", "name": "Documented Review Assessment" },
+        { "id": "IAR", "name": "Independent Assessment Review" }
+      ]
+    },
+    "rules": [
+      "Never call a surface secure. Describe the territory as client-surface security; grade the measures as hardening and the claim by evidence now or provenance later.",
+      "Describe, do not rank: the rungs say how a claim was checked, never that the outcome is good, safe, or correct.",
+      "An axis passes when its findings contain no error; an axis marked partial or not-checked is declared, never counted as clean."
+    ]
+  },
   "conformanceBaseline": [
     "Zero-dependency core",
     "No consumer build",

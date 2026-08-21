@@ -48,20 +48,31 @@ The instruments are zero-dependency, native-first, and themed by TEMPER; the fam
 
 ## 4. Conformance
 
-Conformance is a property of the surface: it is conformant when it holds all six postures. The reference conformance auditor (`conformance.js`) is one instrument for checking that property, and it is partial by nature, because not every posture can be verified from a served-HTML snapshot. It states what it did not check rather than reporting it clean, which is itself a requirement of this standard: an auditor that reports the unverifiable as clean is the overclaiming the standard exists to prevent.
+Conformance holds two questions apart: whether a surface closes all six axes, and how well that claim is backed. The first is breadth, the second is evidence, and a full statement of conformance names both.
 
-The postures divide by what a static check can reach:
+**MISSING Conformant** is the breadth designation: a surface earns it when it discharges all six axes. It is a property of the surface, not of any one tool, and it is carried at whatever evidence level the next part grades.
 
-- **Fully checkable from served HTML**: findability and delivery (the auditor composes BEACON's and FLEET's own auditors for depth), and the operable and hardened axes at the level of semantic controls, labeled inputs, exposed secrets, and markup integrity. The hardened axis's header altitude, the security response headers, needs the response itself, not only the HTML, and is declared not-checked when the headers are absent.
-- **Partially checkable**: the perceivable axis. Contrast needs resolved colors, so it is verified against the palette with TEMPER's `contrast`, not from a snapshot.
-- **Not statically checkable**: the honest-off-the-happy-path axis. The loading, empty, error, and not-found states are not visible in a single happy-path render; they are verified by driving the surface into each state.
+The reference auditor (`conformance.js`) is one instrument for checking that property, and it is partial by nature, because not every axis can be verified from a served-HTML snapshot. What it cannot reach it declares rather than reporting clean, which is itself a requirement here: an auditor that reports the unverifiable as clean is the overclaiming the standard exists to prevent. The axes divide by what a static check can reach:
 
-From that reach come two tiers, and they are a distinction between machine-proved and human-confirmed, never between easy axes and hard ones:
+- **Reachable from served HTML**: findability and delivery (the auditor composes BEACON's and FLEET's own auditors for depth), and the operable and hardened axes at the level of semantic controls, labeled inputs, exposed secrets, and markup integrity. The hardened axis's header altitude, the security response headers, needs the response itself and not only the HTML, and is declared not-checked when the headers are absent.
+- **Needs resolved colors**: the perceivable axis. Contrast is verified against the palette with TEMPER's `contrast`, not from a snapshot.
+- **Needs the surface driven**: the honest-off-the-happy-path axis. The loading, empty, error, and not-found states are not visible in a single happy-path render; they are confirmed by driving the surface into each state.
 
-- **Audited**: the surface passes every check the auditor can make from served HTML. This is machine-verifiable and belongs on every deploy, in continuous integration, since a redeploy can reintroduce any miss.
-- **Conformant**: audited, plus the manual verification of the axes the auditor declares out of reach, the off-happy-path states driven into each condition and contrast checked against the palette. Conformant means all six postures hold; it is the full bar.
+Reach sets the embodiment of each axis's check, not a separate grade: machine where a check can run against the HTML, a defined human procedure where it cannot. Both report onto one ladder.
 
-Audited is the honest intermediate a pipeline reports on its own, not a substitute for conformant: a surface is not done because it is audited, only when the invisible layer is confirmed present including the parts a snapshot cannot see. A surface passes an axis when its findings contain no error; an axis the auditor marks partial or not-checked is declared, never counted as clean.
+**The internal evidence ladder** grades how a conformance claim is backed. The rungs are plain words, cumulative and nested, and they describe how the owner checked the claim, never whether the result is good or safe:
+
+- **self-reported**: a bare claim; the owner says the surface closes the axis.
+- **re-provable**: the claim exposed to a defined, repeatable check anyone could re-apply, the runnable auditor for a machine-reachable axis, the stated procedure for one that is not.
+- **audited**: that check actually applied to the surface, and passed.
+
+The nesting, self-reported within re-provable within audited, is forced rather than chosen: passing the check means it ran against the surface, which means the claim was re-provable, which means it was more than self-reported. Because the machine-reachable checks are a runnable tool, audited there means run-and-re-runnable, not a snapshot that goes stale. And the ladder's ceiling is internal: audited tops out at self-audited, however thorough, and never becomes independent. Naming that ceiling is what keeps the internal ladder from quietly claiming an independence it does not have.
+
+A run of `conformance.js` in continuous integration earns audited on the machine-reachable axes and leaves the rest at self-reported until their procedures are applied; it is the honest intermediate a pipeline reports on its own, not a substitute for the full bar. MISSING Conformant at the audited level is reached when every axis's defined check has been applied and passed, machine and human procedure together. A surface passes an axis when its findings contain no error; an axis the auditor marks partial or not-checked is declared, never counted as clean.
+
+**A reserved external ladder** grades the independence of an assessment, and it stays in the drawer. There is no independent assessment body for this standard today, so grading independence now would name reviewers who are not in the room, the hollow badge the standard is built against. The labels are held for when such an ecosystem exists: **SRA** (Self-Reported Assessment), **DRA** (Documented Review Assessment), **IAR** (Independent Assessment Review).
+
+The evidence words are bare when general to any axis and **HASP-**prefixed when scoped to the hardening claim, so a surface is re-provable generally or HASP-audited for its hardening specifically. The standard never calls a surface secure: the territory may be described as client-surface security, the measures are graded as hardening, and the claim is graded by evidence now or provenance later. Describe, do not rank.
 
 ## 5. Out of scope: honestly not closed
 
@@ -76,7 +87,7 @@ The standard names these as real concerns and routes them to the operator, never
 
 ## 6. Using the standard
 
-Three artifacts carry it. The **agent-instruction file** (`AGENTS.md`) tells an AI builder to compose the instruments and meet the axes rather than hand-rolling. The **manifest** (`manifest.json`, validated by `manifest.schema.json`) is the machine-readable descriptor an agent or pipeline reads. The **conformance auditor** (`conformance.js`) is the runnable check. A builder composes the instruments, an agent reads the manifest and follows the agent-instruction, and every deploy runs the auditor.
+Three artifacts carry it. The **agent-instruction file** (`AGENTS.md`) tells an AI builder to compose the instruments and meet the axes rather than hand-rolling. The **manifest** (`manifest.json`, validated by `manifest.schema.json`) is the machine-readable descriptor an agent or pipeline reads, and it carries the conformance model itself under `conformanceModel`. The **conformance auditor** (`conformance.js`) is the runnable check: its `report()` places a surface on the evidence ladder as a serializable artifact anyone can re-run, the re-provable rung that faces outward, and `reconcile()` holds a published report to a fresh audit so a carried claim cannot outrun what the tool can verify. A builder composes the instruments, an agent reads the manifest and follows the agent-instruction, and every deploy runs the auditor.
 
 A surface is not done because it looks done. It is done when the invisible layer is there too.
 
