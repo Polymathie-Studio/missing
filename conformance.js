@@ -108,8 +108,13 @@ function operable(html) {
   return { checked: true, findings };
 }
 
-// --- Off-happy-path (LUCID/GRACE): not statically checkable. ---
-function offHappyPath() {
+// --- Understandable (LUCID): reader-paced disclosure, not statically checkable. ---
+function understandable() {
+  return { checked: false, notChecked: 'Reader-paced disclosure, whether the surface layers its complexity so a reader is never overwhelmed, is not visible in a static snapshot. Confirm it by the design procedure: LUCID\'s disclosure checklist (mark, depth, and trail present and reader-paced).', findings: [] };
+}
+
+// --- Resilient (GRACE): the off-happy-path states, not statically checkable. ---
+function resilient() {
   return { checked: false, notChecked: 'The loading, empty, error, and 404 states are not visible in a single happy-path render, so a static snapshot cannot verify them. Check them by driving the surface into each state.', findings: [] };
 }
 
@@ -199,7 +204,7 @@ function delivery(html) {
   return { checked: true, deeper: 'fleet-ui audit(html)', findings };
 }
 
-// Audit a shipped surface's HTML across all six axes. Returns
+// Audit a shipped surface's HTML across all seven axes. Returns
 // { ok, axes: { <axis>: { checked, notChecked?, deeper?, findings } } }.
 // ok is true when no finding is an error; axes marked checked:false or 'partial'
 // are declared, not counted as clean. opts.url, the URL the HTML was served from,
@@ -218,7 +223,8 @@ export function audit(html = '', opts = {}) {
   const axes = {
     perceivable: perceivable(html),
     operable: operable(html),
-    offHappyPath: offHappyPath(),
+    understandable: understandable(),
+    resilient: resilient(),
     hardened: hardened(html, opts),
     findability: findability(html, opts),
     delivery: delivery(html),
@@ -232,7 +238,7 @@ export function audit(html = '', opts = {}) {
 // --- The conformance report: placing a surface on the internal evidence ladder. ---
 //
 // audit() answers "what did a static pass find". report() answers the standard's two
-// questions: breadth (does the surface reach MISSING Conformant across all six axes)
+// questions: breadth (does the surface reach MISSING Conformant across all seven axes)
 // and evidence (what rung, self-reported / re-provable / audited, each axis stands on).
 // Every axis a report names carries a defined, re-runnable check, so a report is itself
 // the re-provable artifact, the rung that faces outward: publish it and an outsider can
@@ -241,7 +247,7 @@ export function audit(html = '', opts = {}) {
 // An axis reaches AUDITED when its defined check was applied and a result recorded: the
 // auditor applied it in full (checked === true), or a proven error settled it as a fail,
 // or a human applied the axis's stated procedure and passed the result in via opts.results
-// (e.g. { perceivable: 'pass', offHappyPath: 'pass' }). Otherwise the check is named but
+// (e.g. { perceivable: 'pass', understandable: 'pass', resilient: 'pass' }). Otherwise the check is named but
 // not yet applied for this surface, and the axis stands at RE-PROVABLE. It never claims
 // a rung the tool did not derive; describe, do not rank.
 
@@ -250,7 +256,8 @@ const RUNG_ORDER = { 'self-reported': 0, 're-provable': 1, audited: 2 };
 const CHECKS = {
   perceivable: 'conformance.js perceivable() plus TEMPER contrast() against the palette',
   operable: 'conformance.js operable()',
-  offHappyPath: 'the stated procedure: drive the surface into the loading, empty, error, and not-found states',
+  understandable: 'the stated procedure: LUCID\'s disclosure checklist (mark, depth, and trail present and reader-paced)',
+  resilient: 'the stated procedure: drive the surface into the loading, empty, error, and not-found states',
   hardened: 'conformance.js hardened() plus hardened.js (header effectiveness and markup integrity)',
   findability: 'conformance.js findability() plus beacon-ui audit()',
   delivery: 'conformance.js delivery() plus fleet-ui audit()',

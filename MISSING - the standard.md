@@ -10,7 +10,7 @@ A web surface can render correctly, demo cleanly, and pass a visual review while
 
 The standard takes one posture above the axes, and like a well-formed design it is bounded from both sides, naming what it must not fall below and what it must not exceed.
 
-On the surface, the floor is that the invisible layer is present: a conforming surface holds all six postures, not only the visible first draft, because looks-done is exactly the state that fails the users a review never reaches. The ceiling is that no surface is asked to carry what no drop-in instrument can close: the concerns named out of scope are the operator's, and demanding them for conformance would make the standard an unmeetable mandate rather than a checkable floor.
+On the surface, the floor is that the invisible layer is present: a conforming surface holds all seven postures, not only the visible first draft, because looks-done is exactly the state that fails the users a review never reaches. The ceiling is that no surface is asked to carry what no drop-in instrument can close: the concerns named out of scope are the operator's, and demanding them for conformance would make the standard an unmeetable mandate rather than a checkable floor.
 
 On the standard's grip on itself, the floor is that it names every axis of the invisible layer it can and routes each, and its check verifies what it can on every deploy rather than once. The ceiling is that the standard and its check claim only what they actually close and declare the rest: the unverifiable is never reported clean, and partial coverage is never presented as full. Cross that ceiling and MISSING becomes the overclaiming artifact it exists to prevent.
 
@@ -22,14 +22,15 @@ A builder, human or AI, optimizes for what the artifact under review shows: does
 
 ## 2. The axes and their postures
 
-A conforming surface holds all six postures. Each is stated normatively; each is verifiable, with the limits noted in the conformance procedure.
+A conforming surface holds all seven postures. Each is stated normatively; each is verifiable, with the limits noted in the conformance procedure.
 
 1. **Perceivable.** Every reader can perceive the content. Color contrast meets the WCAG floor, and no meaning is carried by color alone. Text remains legible and resizable.
 2. **Operable.** Every control is operable by any input and any assistive technology. Controls are semantic elements or carry the correct role; each is keyboard-operable with a visible focus indicator and an accessible name; focus is managed across overlays and returned on close; every input is labeled.
-3. **Honest off the happy path.** The surface discloses its condition rather than failing silently. Loading, empty, error, offline, and not-found states each exist and read in plain language, with a way forward. A submission reports success or failure.
-4. **Hardened.** The surface declares the client-surface security posture the browser can enforce: the security response headers, subresource integrity and safe references, and no secrets reaching the client. This includes a user's key, when the surface calls a model or service on the user's behalf, held in the browser and never reaching a server the operator controls.
-5. **Findable.** The surface represents itself correctly to search engines, social platforms, and machine agents. The identifying metadata, canonical URL, social cards, structured data, and the site-level files are present in the server-returned HTML, where consumers that do not run JavaScript can read them.
-6. **Fast and stable.** The surface loads quickly and does not shift under the reader. Images reserve their space and are scheduled correctly, the critical path is clear, and repeat visits are cached.
+3. **Understandable.** The surface places its complexity so a reader is never overwhelmed. Detail is disclosed at the depth the reader chooses and in the order they are ready for; nothing they need is hidden and nothing they cannot yet hold is forced; and every claim stays reachable to its basis.
+4. **Resilient.** The surface discloses its condition rather than failing silently. Loading, empty, error, offline, and not-found states each exist and read in plain language, with a way forward. A submission reports success or failure.
+5. **Hardened.** The surface declares the client-surface security posture the browser can enforce: the security response headers, subresource integrity and safe references, and no secrets reaching the client. This includes a user's key, when the surface calls a model or service on the user's behalf, held in the browser and never reaching a server the operator controls.
+6. **Findable.** The surface represents itself correctly to search engines, social platforms, and machine agents. The identifying metadata, canonical URL, social cards, structured data, and the site-level files are present in the server-returned HTML, where consumers that do not run JavaScript can read them.
+7. **Fast and stable.** The surface loads quickly and does not shift under the reader. Images reserve their space and are scheduled correctly, the critical path is clear, and repeat visits are cached.
 
 ## 3. Routing: each axis to its instrument
 
@@ -39,7 +40,8 @@ The standard is accompanied by a reference family, [Polymathie](https://github.c
 | --- | --- | --- |
 | Perceivable | Perceivable by any reader | TEMPER (color and design tokens) |
 | Operable | Operable by any input or assistive technology | GRASP (interaction components) |
-| Honest off the happy path | Discloses its condition | LUCID (the disclosure principle) and GRACE (the state components) |
+| Understandable | Complexity placed so a reader is never overwhelmed | LUCID |
+| Resilient | Discloses its condition off the happy path | GRACE |
 | Hardened | The client-surface security posture the browser enforces | HASP |
 | Findable | Represents itself to machines and shares | BEACON |
 | Fast and stable | Loads fast and stable | FLEET (the primitizable slice) |
@@ -48,15 +50,15 @@ The instruments are zero-dependency, native-first, and themed by TEMPER; the fam
 
 ## 4. Conformance
 
-Conformance holds two questions apart: whether a surface closes all six axes, and how well that claim is backed. The first is breadth, the second is evidence, and a full statement of conformance names both.
+Conformance holds two questions apart: whether a surface closes all seven axes, and how well that claim is backed. The first is breadth, the second is evidence, and a full statement of conformance names both.
 
-**MISSING Conformant** is the breadth designation: a surface earns it when it discharges all six axes. It is a property of the surface, not of any one tool, and it is carried at whatever evidence level the next part grades.
+**MISSING Conformant** is the breadth designation: a surface earns it when it discharges all seven axes. It is a property of the surface, not of any one tool, and it is carried at whatever evidence level the next part grades.
 
 The reference auditor (`conformance.js`) is one instrument for checking that property, and it is partial by nature, because not every axis can be verified from a served-HTML snapshot. What it cannot reach it declares rather than reporting clean, which is itself a requirement here: an auditor that reports the unverifiable as clean is the overclaiming the standard exists to prevent. The axes divide by what a static check can reach:
 
 - **Reachable from served HTML**: findability and delivery (the auditor composes BEACON's and FLEET's own auditors for depth), and the operable and hardened axes at the level of semantic controls, labeled inputs, exposed secrets, and markup integrity. The hardened axis's header altitude, the security response headers, needs the response itself and not only the HTML, and is declared not-checked when the headers are absent.
 - **Needs resolved colors**: the perceivable axis. Contrast is verified against the palette with TEMPER's `contrast`, not from a snapshot.
-- **Needs the surface driven**: the honest-off-the-happy-path axis. The loading, empty, error, and not-found states are not visible in a single happy-path render; they are confirmed by driving the surface into each state.
+- **Needs the surface driven or a design procedure**: the understandable and resilient axes. Reader-paced disclosure is confirmed by a design procedure rather than a static snapshot; and the loading, empty, error, and not-found states are not visible in a single happy-path render, so they are confirmed by driving the surface into each state.
 
 Reach sets the embodiment of each axis's check, not a separate grade: machine where a check can run against the HTML, a defined human procedure where it cannot. Both report onto one ladder.
 

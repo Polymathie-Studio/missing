@@ -47,7 +47,7 @@
     "notClosedByPrimitive": { "type": "array", "items": { "type": "string" } },
     "conformanceModel": {
       "type": "object",
-      "description": "How a surface conforms and how well the claim is backed. Breadth (all six axes closed) is held apart from evidence (how the claim was checked).",
+      "description": "How a surface conforms and how well the claim is backed. Breadth (all seven axes closed) is held apart from evidence (how the claim was checked).",
       "additionalProperties": true,
       "properties": {
         "breadthDesignation": {

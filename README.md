@@ -10,7 +10,8 @@ flowchart TB
   DS --> M["MISSING, the standard and conformance auditor"]
   M --> T["Perceivable · TEMPER"]
   M --> G["Operable · GRASP"]
-  M --> LG["Off the happy path · LUCID + GRACE"]
+  M --> U["Understandable · LUCID"]
+  M --> R["Resilient · GRACE"]
   M --> H["Hardened · HASP"]
   M --> B["Findable · BEACON"]
   M --> F["Fast and stable · FLEET"]
@@ -28,7 +29,8 @@ AI-assisted building and rendering make them missing more often, for the same re
 | --- | --- | --- |
 | Invisible because color-coded | Perceivable by any reader | TEMPER |
 | Invisible to a keyboard or assistive tech | Operable by any input or assistive technology | GRASP |
-| Invisible until you interact or something fails | Behaves honestly off the happy path | LUCID (principle) + GRACE (components) |
+| Invisible until complexity overwhelms | Complexity placed so a reader is never overwhelmed | LUCID |
+| Invisible until you interact or something fails | Discloses its condition off the happy path | GRACE |
 | Invisible until inspected: keys in the client bundle | The user's key stays in the user's browser | HASP |
 | Invisible until shared or crawled | Represents itself correctly to machines and shares | BEACON |
 | Invisible until measured | Loads fast and stable | FLEET |
@@ -40,7 +42,7 @@ MISSING ships its instructions machine-readable, not only as prose, so a tool or
 - **`manifest.json`** is the canonical descriptor of the family: every primitive's axis, package, exports, API, the conformance checks it exposes, and the packaging that lets it land on the common distribution surfaces (npm, JSR, CDN, and more).
 - **`manifest.schema.json`** is a portable JSON Schema (draft 2020-12); validate any manifest against it with your own tool.
 - **`validate.ts`** validates the manifest against the schema with zero dependencies, so MISSING stays as dependency-free as the family it describes. Run: `deno run --allow-read validate.ts`.
-- **`conformance.js`** audits a shipped surface's HTML across all six axes and returns a structured per-axis report. It is a breadth pass; for depth on findability and delivery it points to the primitive's own auditor.
+- **`conformance.js`** audits a shipped surface's HTML across all seven axes and returns a structured per-axis report. It is a breadth pass; for depth on findability and delivery it points to the primitive's own auditor.
 
 ```js
 import { audit } from './conformance.js'
@@ -49,7 +51,7 @@ const report = audit(serverHtmlString)
 if (!report.ok) console.error(report.axes)
 ```
 
-Following the family's honesty principle, the auditor declares the axes it cannot judge from a static snapshot rather than reporting them clean: the off-happy-path states are not visible in a single happy-path render, and full contrast needs rendered colors, so those come back marked `not checked` and `partial` with the reason.
+Following the family's honesty principle, the auditor declares the axes it cannot judge from a static snapshot rather than reporting them clean: reader-paced disclosure and the off-happy-path states are not visible in a single happy-path render, and full contrast needs rendered colors, so those come back marked `not checked` and `partial` with the reason.
 
 ## What MISSING does not close
 

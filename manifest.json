@@ -82,9 +82,14 @@
       "instrument": "GRASP"
     },
     {
-      "axis": "off-happy-path",
-      "posture": "The interface behaves honestly off the happy path",
-      "instrument": "LUCID (principle) + GRACE (components)"
+      "axis": "understandable",
+      "posture": "Complexity placed so a reader is never overwhelmed; detail disclosed at the depth the reader chooses",
+      "instrument": "LUCID"
+    },
+    {
+      "axis": "resilient",
+      "posture": "The interface discloses its condition off the happy path: loading, empty, error, and not-found states",
+      "instrument": "GRACE"
     },
     {
       "axis": "hardened",
@@ -156,7 +161,7 @@
     {
       "id": "LUCID",
       "backronym": "Layered Understanding, Calibrated In Disclosure",
-      "axis": "off-happy-path",
+      "axis": "understandable",
       "posture": "Reader-sovereign progressive disclosure; the disclosure spine of the family",
       "shape": "core+react+standard",
       "status": "published",
@@ -179,7 +184,7 @@
           "status": "named",
           "name": "lucid-reader",
           "packageVersion": "0.3.0",
-          "standardVersion": "0.7.0",
+          "standardVersion": "0.8.0",
           "exports": {
             ".": "./lucid.js",
             "./lucid.css": "./lucid.css",
@@ -289,8 +294,8 @@
     {
       "id": "GRACE",
       "backronym": "Graceful Rendering At every Condition, Explicit",
-      "axis": "off-happy-path",
-      "posture": "The reusable state components that render LUCID's off-happy-path principle",
+      "axis": "resilient",
+      "posture": "The reusable state components for the resilient axis: loading, empty, error, and not-found states rendered explicitly",
       "shape": "core+react+css",
       "status": "published",
       "repo": "https://github.com/Polymathie-Studio/grace",
@@ -517,10 +522,10 @@
     "Delivery transforms and enforcement (image compression, JavaScript bundling, setting cache headers or CDN behavior): build-tool and server work; FLEET emits the markup and config that point at the built assets and audits the result, but cannot encode a pixel, bundle a module, or set a header."
   ],
   "conformanceModel": {
-    "$comment": "How a surface conforms and how well the claim is backed. Two questions held apart: breadth (are all six axes closed) and evidence (how the claim was checked). Prose in section 4 of 'MISSING - the standard.md'.",
+    "$comment": "How a surface conforms and how well the claim is backed. Two questions held apart: breadth (are all seven axes closed) and evidence (how the claim was checked). Prose in section 4 of 'MISSING - the standard.md'.",
     "breadthDesignation": {
       "name": "MISSING Conformant",
-      "earnedWhen": "The surface discharges all six axes.",
+      "earnedWhen": "The surface discharges all seven axes.",
       "note": "A property of the surface, not of any one tool. Carried at whatever evidence level below."
     },
     "reach": {
@@ -535,7 +540,8 @@
         "perceivable (contrast verified against the palette with TEMPER contrast(), not from a snapshot)"
       ],
       "needsSurfaceDriven": [
-        "off-the-happy-path (loading, empty, error, not-found confirmed by driving the surface into each state)"
+        "understandable (reader-paced disclosure confirmed by a design procedure, not a static snapshot)",
+        "resilient (loading, empty, error, not-found confirmed by driving the surface into each state)"
       ]
     },
     "internalEvidenceLadder": {
