@@ -1,3 +1,5 @@
+> **Moved.** This standard now lives in the consolidated DS4AI suite at [Polymathie-Studio/ds4ai/standards/missing](https://github.com/Polymathie-Studio/ds4ai/tree/main/standards/missing). This repository is archived and read-only.
+
 # MISSING
 
 MISSING is the standard at the center of **DS4AI, the Design Suite for AI, from [Polymathie-Studio](https://github.com/Polymathie-Studio)**: the umbrella for the invisible-correctness layer of a shipped web surface, what a page must carry that a look-at-it review cannot see. AI-assisted builds optimize for "does it render, does the demo work," and skip everything not visible in the artifact under review. Every gap is an instance of that one thing. MISSING names the axes of that invisibility, routes each to the instrument that closes it, and ships the machine-readable pieces that let an agent or a build pipeline compose the suite and check a surface against it.
